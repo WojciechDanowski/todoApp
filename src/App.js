@@ -5,8 +5,8 @@ import AddTodo from "./AddTodo";
 class App extends Component {
   state = {
     todos: [
-      { id: 1, content: "testObject" },
-      { id: 2, content: "another One just to be sure12321" }
+      { id: 1, content: "Click on me!" },
+      { id: 2, content: "Try to delete all of us" }
     ]
   };
   deleteTodo = id => {
@@ -17,12 +17,19 @@ class App extends Component {
       todos
     });
   };
+  addTodo = todo => {
+    todo.id = Math.random();
+    let todos = [...this.state.todos, todo];
+    this.setState({
+      todos
+    });
+  };
   render() {
     return (
       <div className="todo-app container">
         <h1 className="center blue-text">Todo's</h1>
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
-        <AddTodo />
+        <AddTodo addTodo={this.addTodo} />
       </div>
     );
   }
